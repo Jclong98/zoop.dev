@@ -1,7 +1,17 @@
-<script setup></script>
+<script setup>
+import { ref, computed } from "vue"
+
+const combos = [
+  ["👉", "😎", "👉"],
+  ["✋", "😳", "🤚"],
+]
+
+const timesClicked = ref(0)
+const currentCombo = computed(() => combos[timesClicked.value % combos.length])
+</script>
 
 <template>
-  <div class="zoop">
+  <div class="zoop" @click="timesClicked++">
     <div style="display: flex">
       <p
         v-motion
@@ -9,7 +19,7 @@
         :enter="{ opacity: 1, x: 0, y: 0, rotate: 0 }"
         :delay="800"
       >
-        👉
+        {{ currentCombo[0] }}
       </p>
       <p
         v-motion
@@ -17,7 +27,7 @@
         :enter="{ opacity: 1, y: 0 }"
         :delay="400"
       >
-        😎
+        {{ currentCombo[1] }}
       </p>
       <p
         v-motion
@@ -25,7 +35,7 @@
         :enter="{ opacity: 1, x: 0, y: 0, rotate: 0 }"
         :delay="900"
       >
-        👉
+        {{ currentCombo[2] }}
       </p>
     </div>
     <p
@@ -81,6 +91,7 @@ body {
 .zoop {
   font-size: 15vw;
   text-align: center;
+  cursor: pointer;
 }
 
 p {
@@ -99,6 +110,6 @@ p {
 }
 
 #github-icon:hover {
-  filter: invert(100%);
+  filter: invert(50%);
 }
 </style>
