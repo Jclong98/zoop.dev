@@ -1,24 +1,41 @@
-<script setup>
-</script>
+<script setup></script>
 
 <template>
   <div class="zoop">
-    <div style="display: flex;">
+    <div style="display: flex">
       <p
         v-motion
-        :initial="{ opacity: 0, x: -1000, y: -500 }"
-        :enter="{ opacity: 1, x: 0, y: 0 }"
+        :initial="{ opacity: 0, x: -500, y: -500, rotate: -90 }"
+        :enter="{ opacity: 1, x: 0, y: 0, rotate: 0 }"
         :delay="800"
-      >👉</p>
-      <p v-motion :initial="{ opacity: 0, y: -1000 }" :enter="{ opacity: 1, y: 0 }" :delay="400">😎</p>
+      >
+        👉
+      </p>
       <p
         v-motion
-        :initial="{ opacity: 0, x: 1000, y: -500 }"
-        :enter="{ opacity: 1, x: 0, y: 0 }"
-        :delay="800"
-      >👉</p>
+        :initial="{ opacity: 0, y: -500 }"
+        :enter="{ opacity: 1, y: 0 }"
+        :delay="400"
+      >
+        😎
+      </p>
+      <p
+        v-motion
+        :initial="{ opacity: 0, x: -500, y: -500, rotate: -90 }"
+        :enter="{ opacity: 1, x: 0, y: 0, rotate: 0 }"
+        :delay="900"
+      >
+        👉
+      </p>
     </div>
-    <p v-motion :initial="{ opacity: 0, x: -1000 }" :enter="{ opacity: 1, x: 0 }" :delay="1300">zoop</p>
+    <p
+      v-motion
+      :initial="{ opacity: 0, x: -500 }"
+      :enter="{ opacity: 1, x: 0 }"
+      :delay="1300"
+    >
+      zoop
+    </p>
   </div>
 </template>
 
