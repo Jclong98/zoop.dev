@@ -92,6 +92,7 @@ body {
   font-size: 15vw;
   text-align: center;
   cursor: pointer;
+  user-select: none;
 }
 
 p {
