@@ -40,8 +40,8 @@ const currentCombo = computed(() => combos[timesClicked.value % combos.length])
     </div>
     <p
       v-motion
-      :initial="{ opacity: 0, x: -500 }"
-      :enter="{ opacity: 1, x: 0 }"
+      :initial="{ opacity: 0, scale: 0 }"
+      :enter="{ opacity: 1, scale: 1 }"
       :delay="1300"
     >
       zoop
