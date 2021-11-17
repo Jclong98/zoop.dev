@@ -1,10 +1,71 @@
 <script setup>
-import { ref, computed } from "vue"
+import { ref, computed, onMounted, watch } from "vue"
+import { useMotion } from "@vueuse/motion"
 
 const combos = [
   ["👉", "😎", "👉"],
   ["✋", "😳", "🤚"],
 ]
+
+const left = ref(null)
+const center = ref(null)
+const right = ref(null)
+const zoop = ref(null)
+
+const getHandMotion = (delay = 0) => {
+  return {
+    initial: {
+      opacity: 0,
+      x: -500,
+      y: -500,
+      rotate: -90,
+    },
+    enter: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      rotate: 0,
+      transition: {
+        delay,
+      },
+    },
+  }
+}
+
+// hand motions
+useMotion(left, getHandMotion(800))
+useMotion(right, getHandMotion(900))
+
+// center object motion
+useMotion(center, {
+  initial: {
+    opacity: 0,
+    y: -500,
+  },
+  enter: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 400,
+    },
+  },
+})
+
+// zoop text motion
+useMotion(zoop, {
+  initial: {
+    opacity: 0,
+    scale: 0,
+  },
+  enter: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delay: 1300,
+      damping: 9,
+    },
+  },
+})
 
 const timesClicked = ref(0)
 const currentCombo = computed(() => combos[timesClicked.value % combos.length])
@@ -13,39 +74,11 @@ const currentCombo = computed(() => combos[timesClicked.value % combos.length])
 <template>
   <div class="zoop" @click="timesClicked++">
     <div style="display: flex">
-      <p
-        v-motion
-        :initial="{ opacity: 0, x: -500, y: -500, rotate: -90 }"
-        :enter="{ opacity: 1, x: 0, y: 0, rotate: 0 }"
-        :delay="800"
-      >
-        {{ currentCombo[0] }}
-      </p>
-      <p
-        v-motion
-        :initial="{ opacity: 0, y: -500 }"
-        :enter="{ opacity: 1, y: 0 }"
-        :delay="400"
-      >
-        {{ currentCombo[1] }}
-      </p>
-      <p
-        v-motion
-        :initial="{ opacity: 0, x: -500, y: -500, rotate: -90 }"
-        :enter="{ opacity: 1, x: 0, y: 0, rotate: 0 }"
-        :delay="900"
-      >
-        {{ currentCombo[2] }}
-      </p>
+      <p ref="left">{{ currentCombo[0] }}</p>
+      <p ref="center">{{ currentCombo[1] }}</p>
+      <p ref="right">{{ currentCombo[2] }}</p>
     </div>
-    <p
-      v-motion
-      :initial="{ opacity: 0, scale: 0 }"
-      :enter="{ opacity: 1, scale: 1 }"
-      :delay="1300"
-    >
-      zoop
-    </p>
+    <p ref="zoop">zoop</p>
   </div>
   <a href="https://github.com/Jclong98/zoop.dev" id="github-icon">
     <svg
