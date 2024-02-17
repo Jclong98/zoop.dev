@@ -1,18 +1,21 @@
 {
-  "name": "zoop.dev",
-  "version": "0.0.0",
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@vueuse/core": "^6.8.0",
-    "@vueuse/motion": "^2.0.0-beta.4",
-    "vue": "^3.2.16"
+    "nuxt": "^3.10.2",
+    "vue": "^3.4.19",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.9.3",
-    "vite": "^2.6.4"
+    "@vueuse/motion": "^2.0.0",
+    "@vueuse/nuxt": "^10.7.2"
   }
 }

@@ -1,16 +1,13 @@
-<script setup>
-import { ref, computed, onMounted, watch } from "vue"
-import { useMotion } from "@vueuse/motion"
-
+<script setup lang="ts">
 const combos = [
   ["👉", "😎", "👉"],
   ["✋", "😳", "🤚"],
-]
+];
 
-const left = ref(null)
-const center = ref(null)
-const right = ref(null)
-const zoop = ref(null)
+const left = ref(null);
+const center = ref(null);
+const right = ref(null);
+const zoop = ref(null);
 
 const getHandMotion = (delay = 0) => {
   return {
@@ -29,12 +26,12 @@ const getHandMotion = (delay = 0) => {
         delay,
       },
     },
-  }
-}
+  };
+};
 
 // hand motions
-useMotion(left, getHandMotion(800))
-useMotion(right, getHandMotion(900))
+useMotion(left, getHandMotion(800));
+useMotion(right, getHandMotion(900));
 
 // center object motion
 useMotion(center, {
@@ -49,7 +46,7 @@ useMotion(center, {
       delay: 400,
     },
   },
-})
+});
 
 // zoop text motion
 useMotion(zoop, {
@@ -65,13 +62,24 @@ useMotion(zoop, {
       damping: 9,
     },
   },
-})
+});
 
-const timesClicked = ref(0)
-const currentCombo = computed(() => combos[timesClicked.value % combos.length])
+const timesClicked = ref(0);
+const currentCombo = computed(() => combos[timesClicked.value % combos.length]);
 </script>
 
 <template>
+  <Head>
+    <Meta charset="UTF-8" />
+    <Link rel="icon" href="/favicon.png" />
+    <Meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <Title>zoop</Title>
+    <Meta content="zoop" property="og:title" />
+    <Meta content="👉😎👉" property="og:description" />
+    <Meta content="#ffff00" data-react-helmet="true" name="theme-color" />
+    <Meta content="https://www.zoop.dev" property="og:url" />
+  </Head>
+
   <div class="zoop" @click="timesClicked++">
     <div style="display: flex">
       <p ref="left">{{ currentCombo[0] }}</p>
@@ -80,6 +88,7 @@ const currentCombo = computed(() => combos[timesClicked.value % combos.length])
     </div>
     <p ref="zoop">zoop</p>
   </div>
+
   <a href="https://github.com/Jclong98/zoop.dev" id="github-icon">
     <svg
       viewBox="0 0 256 249"
